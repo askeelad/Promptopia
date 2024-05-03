@@ -26,6 +26,7 @@ const Feed = () => {
   const handleSearChange = (e) => {
     e.preventDefault();
     setSearchText(e.target.value);
+    if (e.target.value == "") return fetchPosts();
     const filteredPosts = posts.filter((p) => {
       if (p.prompt.includes(e.target.value)) return true;
       if (p.tag.includes(e.target.value)) return true;
@@ -57,8 +58,8 @@ const Feed = () => {
   };
 
   useEffect(() => {
-    if (searchText == "") fetchPosts();
-  }, [searchText]);
+    fetchPosts();
+  }, []);
   return (
     <section className="feed">
       <form className="relative w-full flex-center">
