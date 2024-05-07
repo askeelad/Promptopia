@@ -50,7 +50,7 @@ const Feed = () => {
 
   const fetchPosts = async () => {
     console.log("enter fetch");
-    const response = await fetch("/api/prompt", { cache: "no-store" });
+    const response = await fetch("/api/prompt", { revalidate: 10 });
     const data = await response.json();
     setPosts(data);
     setSeacrhedPosts(data);
